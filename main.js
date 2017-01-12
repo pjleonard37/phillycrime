@@ -11,8 +11,8 @@ var geojson;
 
 // Pull in crime data from Philly Gov
 function crimeRequest(requestpolygon, geography){
-  var crimedataurl = 'http://gis.phila.gov/ArcGIS/rest/services/PhilaGov/Police_Incidents_Last30/MapServer/0/query?geometry={"rings":' + requestpolygon + ',"spatialReference":{"wkid":4326}}&&geometryType=esriGeometryPolygon&spatialRel=esriSpatialRelContains&outFields=*&inSR=4326&outSR=4326&f=pjson&pretty=true';
-  var violentcrimedataurl = 'http://gis.phila.gov/ArcGIS/rest/services/PhilaGov/Police_Incidents/MapServer/0/query?geometry={rings:' + requestpolygon + ',spatialReference:{wkid:4326}}&&geometryType=esriGeometryPolygon&where=UCR_GENERAL%3D%27400%27+OR+UCR_GENERAL%3D%27300%27+OR+UCR_GENERAL%3D%27200%27+OR+UCR_GENERAL%3D%27100%27&spatialRel=esriSpatialRelContains&outFields=*&inSR=4326&outSR=4326&f=pjson&pretty=true';
+  var crimedataurl = 'http://gis.phila.gov/ArcGIS/rest/services/PhilaGov/Police_Incidents_Part1_Part2_Last30/MapServer/0/query?geometry={"rings":' + requestpolygon + ',"spatialReference":{"wkid":4326}}&&geometryType=esriGeometryPolygon&spatialRel=esriSpatialRelContains&outFields=*&inSR=4326&outSR=4326&f=pjson&pretty=true';
+  var violentcrimedataurl = 'http://gis.phila.gov/ArcGIS/rest/services/PhilaGov/Police_Incidents_Part1_Part2_Last30/MapServer/0/query?geometry={rings:' + requestpolygon + ',spatialReference:{wkid:4326}}&&geometryType=esriGeometryPolygon&where=UCR_GENERAL%3D%27400%27+OR+UCR_GENERAL%3D%27300%27+OR+UCR_GENERAL%3D%27200%27+OR+UCR_GENERAL%3D%27100%27&spatialRel=esriSpatialRelContains&outFields=*&inSR=4326&outSR=4326&f=pjson&pretty=true';
   var crimedata = [];
   var crime;
   var marker;
@@ -48,7 +48,7 @@ $('#zoneSelect').on('change', function() {
   var that = this;
   var geography = true;
   var requestpolygon = '[[[-75.0252,40.1331],[-75.0143,40.1385],[-74.9650,40.1166],[-74.9759,40.0509],[-75.0581,39.9907],[-75.1348,39.9523],[-75.1402,39.8866],[-75.2114,39.8647],[-75.2607,39.8757],[-75.2334,39.9359],[-75.2772,39.9742],[-75.2060,40.0126],[-75.2662,40.0564],[-75.2224,40.0947],[-75.1074,40.0454]]]';
-  
+
   crimeRequest(requestpolygon, geography);
   $('#locationinfobox').text("Locations loading . . .");
   if(geojson){
@@ -120,7 +120,7 @@ function buildGeography (geojsonlink, buffer, geographytype){
           var locationjoinedformatted = "[[[" + locationjoined + "]]]"
           var datareturned = crimeRequest(locationjoinedformatted, geography);
 
-          // Fill in information 
+          // Fill in information
           switch (geographytype){
             case "apartments":
               $('#name').html("<b>Property name: </b>" + layer.feature.properties.Building_Name);
