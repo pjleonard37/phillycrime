@@ -11,8 +11,12 @@ var geojson;
 
 // Pull in crime data from Philly Gov
 function crimeRequest(requestpolygon, geography){
-  var crimedataurl = 'http://gis.phila.gov/ArcGIS/rest/services/PhilaGov/Police_Incidents_Part1_Part2_Last30/MapServer/0/query?geometry={"rings":' + requestpolygon + ',"spatialReference":{"wkid":4326}}&&geometryType=esriGeometryPolygon&spatialRel=esriSpatialRelContains&outFields=*&inSR=4326&outSR=4326&f=pjson&pretty=true';
-  var violentcrimedataurl = 'http://gis.phila.gov/ArcGIS/rest/services/PhilaGov/Police_Incidents_Part1_Part2_Last30/MapServer/0/query?geometry={rings:' + requestpolygon + ',spatialReference:{wkid:4326}}&&geometryType=esriGeometryPolygon&where=UCR_GENERAL%3D%27400%27+OR+UCR_GENERAL%3D%27300%27+OR+UCR_GENERAL%3D%27200%27+OR+UCR_GENERAL%3D%27100%27&spatialRel=esriSpatialRelContains&outFields=*&inSR=4326&outSR=4326&f=pjson&pretty=true';
+    // OLD API - may revert
+  //var crimedataurl = 'http://gis.phila.gov/ArcGIS/rest/services/PhilaGov/Police_Incidents_Part1_Part2_Last30/MapServer/0/query?geometry={"rings":' + requestpolygon + ',"spatialReference":{"wkid":4326}}&&geometryType=esriGeometryPolygon&spatialRel=esriSpatialRelContains&outFields=*&inSR=4326&outSR=4326&f=pjson&pretty=true';
+  var crimedataurl = 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/INCIDENTS_PART1_PART2/FeatureServer/0/query?geometry={"rings":' + requestpolygon + ',"spatialReference":{"wkid":4326}}&&geometryType=esriGeometryPolygon&spatialRel=esriSpatialRelContains&outFields=*&inSR=4326&outSR=4326&f=pjson&pretty=true';
+
+  //var violentcrimedataurl = 'http://gis.phila.gov/ArcGIS/rest/services/PhilaGov/Police_Incidents_Part1_Part2_Last30/MapServer/0/query?geometry={rings:' + requestpolygon + ',spatialReference:{wkid:4326}}&&geometryType=esriGeometryPolygon&where=UCR_GENERAL%3D%27400%27+OR+UCR_GENERAL%3D%27300%27+OR+UCR_GENERAL%3D%27200%27+OR+UCR_GENERAL%3D%27100%27&spatialRel=esriSpatialRelContains&outFields=*&inSR=4326&outSR=4326&f=pjson&pretty=true';
+  var violentcrimedataurl = 'https://services.arcgis.com/fLeGjb7u4uXqeF9q/arcgis/rest/services/INCIDENTS_PART1_PART2/FeatureServer//0/query?geometry={rings:' + requestpolygon + ',spatialReference:{wkid:4326}}&&geometryType=esriGeometryPolygon&where=UCR_GENERAL%3D%27400%27+OR+UCR_GENERAL%3D%27300%27+OR+UCR_GENERAL%3D%27200%27+OR+UCR_GENERAL%3D%27100%27&spatialRel=esriSpatialRelContains&outFields=*&inSR=4326&outSR=4326&f=pjson&pretty=true';
   var crimedata = [];
   var crime;
   var marker;
